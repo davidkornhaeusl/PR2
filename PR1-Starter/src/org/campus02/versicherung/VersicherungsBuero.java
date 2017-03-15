@@ -72,11 +72,44 @@ public class VersicherungsBuero {
 	
 	public HashMap<String, Double> sumByPerson()
 	{
-		return null;
+		HashMap<String, Double> result = new HashMap<>();
+		for (Versicherung versicherung : versicherungen) {
+			for (String person: versicherung.getVersichertePersonen()) {
+				double value = versicherung.getVersicherungsSumme();
+				if (result.containsKey(person))
+				{
+					// person existiert schon
+					value += result.get(person);
+				}
+				result.put(person, value);
+			}
+		}
+		return result;
 	}
 	
 	public HashMap<String, Double> maxByPerson()
 	{
-		return null;
+		HashMap<String, Double> result = new HashMap<>();
+		for (Versicherung versicherung : versicherungen) {
+			for (String person: versicherung.getVersichertePersonen()) {
+				// CODE
+				if (!result.containsKey(person))
+				{ 	// Kunde noch nicht in Map ... 
+					result.put(person, versicherung.getVersicherungsSumme());
+				}
+				else
+				{
+					// Person bereits mit einem Wert in HashMap
+					double comp = versicherung.getVersicherungsSumme();
+					double currentMax = result.get(person);
+					
+					if (comp > currentMax)
+					{
+						result.put(person, comp);
+					}
+				}
+			}
+		}
+		return result;
 	}
 }
