@@ -26,6 +26,22 @@ public class Address implements Comparable<Address> {
 				+ ", email=" + email + "]";
 	}
 
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public String getMobilNumber() {
+		return mobilNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
 	@Override
 	public int compareTo(Address o) {
 		int comp;

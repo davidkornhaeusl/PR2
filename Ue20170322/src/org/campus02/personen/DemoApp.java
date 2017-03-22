@@ -39,6 +39,10 @@ public class DemoApp {
 		Collections.sort( am.getAddresses());
 
 		am.printAll();
+		
+		Collections.sort( am.getAddresses(),new AddressMobileEmailComparator());
+
+		am.printAll();
 	}
 
 }
