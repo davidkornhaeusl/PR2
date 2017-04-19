@@ -2,16 +2,19 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ResultManager {
 
 	private String path;
-	private HashMap<Character, Integer> letters;
+	public HashMap<Character, Integer> letters;
 	public ResultManager(String path) {
 		this.path = path;
 		letters = new HashMap<>();
@@ -55,10 +58,20 @@ public class ResultManager {
 		// In HashMap speichern
 	}
 	
-	public void write()
+	public void writeFile()
+	{
+		try {
+			writeStream(new FileOutputStream(path));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeStream(OutputStream os)
 	{
 		try(BufferedWriter bw = new BufferedWriter
-				(new FileWriter(path)))
+				(new OutputStreamWriter(os)))
 		{
 			for(Map.Entry<Character, Integer> entry : letters.entrySet())
 			{
@@ -73,7 +86,7 @@ public class ResultManager {
 		}
 	}
 
-	public void addLetter(Character c)
+	public synchronized void addLetter(Character c)
 	{
 		if (letters.containsKey(c))
 			letters.put(c, letters.get(c) + 1);
