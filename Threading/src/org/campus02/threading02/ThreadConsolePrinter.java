@@ -1,6 +1,7 @@
 package org.campus02.threading02;
 
-public class ThreadConsolePrinter implements Runnable {
+public class ThreadConsolePrinter 
+	implements Runnable {
 
 	private char identifier;
 	public ThreadConsolePrinter(char c)
