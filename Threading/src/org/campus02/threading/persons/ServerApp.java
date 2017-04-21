@@ -17,7 +17,8 @@ public class ServerApp {
 				System.out.println("waiting for client");
 				Socket s = server.accept();
 				System.out.println("got client");
-				Thread th = new Thread(new ClientCommunication(s));
+				Thread th = new Thread(
+						new ClientCommunication(s));
 				th.start();
 			}
 		} catch (IOException e) {

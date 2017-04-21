@@ -22,18 +22,25 @@ public class ClientCommunication implements Runnable {
 	@Override
 	public void run() {
 
-		try (BufferedReader rw = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				ObjectOutputStream oow = new ObjectOutputStream(client.getOutputStream())
+		try (BufferedReader rw = new BufferedReader(
+				new InputStreamReader(
+						client.getInputStream()));
+				ObjectOutputStream oow = 
+						new ObjectOutputStream(
+								client.getOutputStream())
 				)
 		{
-			ArrayList<Person> persons = (new PersonLoader("D:\\PR2\\persons.csv")).load();
+			ArrayList<Person> persons = 
+					(new PersonLoader("D:\\PR2\\persons.csv"))
+						.load();
 			
 			String command;
 			while ((command = rw.readLine()) != null 
 					&& !command.equalsIgnoreCase("exit")
 					)
 			{
-				System.out.println("Command from Client >> " + command);
+				System.out.println("Command from Client >> " 
+							+ command);
 				if (command.startsWith("GET "))
 				{
 					String[] parts = command.split(" ");

@@ -15,8 +15,10 @@ public class DemoClient {
 
 		try (Socket s = new Socket("127.0.0.1", 1234))
 		{
-			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-				ObjectInputStream ooi = new ObjectInputStream(s.getInputStream())	
+			try (BufferedWriter bw = new BufferedWriter(
+					new OutputStreamWriter(s.getOutputStream()));
+				ObjectInputStream ooi = new ObjectInputStream(
+						s.getInputStream())	
 					)
 			{
 				sendCommand("GET 2", bw);

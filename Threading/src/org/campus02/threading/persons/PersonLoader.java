@@ -1,6 +1,7 @@
 package org.campus02.threading.persons;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +16,9 @@ public class PersonLoader {
 
 	public ArrayList<Person> load() throws PersonLoadException
 	{
-		try (BufferedReader br = new BufferedReader(new FileReader(path)))
+		try (BufferedReader br = 
+				new BufferedReader(new FileReader(
+						new File(path))))
 		{
 			ArrayList<Person> persons = new ArrayList<>();
 			String input;
@@ -26,14 +29,14 @@ public class PersonLoader {
 				if (col.length != 3)
 					throw new PersonLoadException("Ungültige Anzahl an Spalten: " + input);
 				
-				persons.add(new Person(Integer.parseInt(col[0]), col[1], col[2]));
+				persons.add(new Person(Integer.parseInt(col[0]),
+						col[1], col[2]));
 			}
 			
 			return persons;
 		} catch (FileNotFoundException e) {
 			throw new PersonLoadException(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			throw new PersonLoadException(e);
 		}
 	}
