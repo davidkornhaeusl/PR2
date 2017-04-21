@@ -37,12 +37,16 @@ public class ClientCommunication implements Runnable {
 				if (command.startsWith("GET "))
 				{
 					String[] parts = command.split(" ");
-					int id = Integer.parseInt(parts[1]);
-					
-					for (Person p : persons) {
-						if (p.getId() == id)
-							oow.writeObject(p);
+					if (parts.length == 2)
+					{
+						int id = Integer.parseInt(parts[1]);
+						
+						for (Person p : persons) {
+							if (p.getId() == id)
+								oow.writeObject(p);
+						}
 					}
+					
 				}
 				else if (command.equalsIgnoreCase("GETALL"))
 				{
